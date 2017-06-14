@@ -29,8 +29,8 @@ typedef struct gz gz;
 
 struct  xinxi
 {
-	char name[16];  //姓名 
-	char sex[3];    //性别 
+	char name[20];  //姓名 
+	char sex[20];    //性别 
 	char job[20];   //工作 
 	int old;
 	gz gongzi; 
@@ -49,8 +49,8 @@ typedef struct zhanghao zhanghao; //账号信息
 
 struct  yonghu
 {
-	char adm[11];
-	char mima[11];
+	char adm[20];
+	char mima[20];
 };
 typedef struct yonghu yonghu;
 
@@ -70,22 +70,36 @@ void gotoxy(int x ,int y)
 void jiemian()
 {
 	system("cls");
-	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");//定义用户界面 
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("*                                                                   *\n");
-	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");//定义用户界面 
+	printf("*                                                                      	*\n");
+	printf("*                                                                  	    *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");	
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("*                                                                       *\n");
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 
 }
 
@@ -274,7 +288,7 @@ void xiugai(xinxi a[],int N)
 
 void add(FILE *fp1,FILE *fp2)					//增加会员
 {
-	char c[2]={' '},d[2]={'\12'};
+	char c[20]={' '},d[20]={'\12'};
 	xinxi people;
 	fp1 = fopen("D:\\用户.txt","a+");
 	fp2 = fopen("D:\\员工信息.txt","a+");
@@ -574,7 +588,7 @@ void findall(xinxi a[],int N)		//查找信息			这里只显示最后一个月(12月)的工资，如
 	for( ; i<=N ; i++ )
 	{
 		gotoxy(11,5+i);
-		printf("%-14s%4s%16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
+		printf("%-14s %3s %16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
 	}
 //	Sleep(3000);
 	getch();
