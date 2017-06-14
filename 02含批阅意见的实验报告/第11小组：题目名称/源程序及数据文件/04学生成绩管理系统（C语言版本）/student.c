@@ -21,7 +21,6 @@ int readCus(Custome  *Cus , int n)          /*¶ÁÈëÑ§Éú¼ÇÂ¼Öµ£¬Ñ§ºÅÎª0»ò¶ÁÂú¹æ¶¨Ì
 		scanf("%ld", &Cus[i].ID); 
 		printf("food: ");             //ËùÓĞ²ËÆ·
 		scanf("%d", &Cus[i].food); 
-    	     Cus[i].total=0;                /*×Ü¼ÛĞèÒª¼ÆËãÇóµÃ£¬³õÖµÖÃÎª0*/
 	}
 	return i;                         /*·µ»ØÊµ¼Ê¶ÁÈëµÄ¼ÇÂ¼ÌõÊı*/
 }
