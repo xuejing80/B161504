@@ -28,11 +28,11 @@ struct  gz                      //定义月份信息
 typedef struct gz gz;
 
 struct  xinxi
-{
-	char name[16];  //姓名 
+{ 
+	char name[10];   //姓名 
 	char sex[3];    //性别 
-	char job[20];   //工作 
-	int old;
+	char job[5];    //工作 
+	int old;	    //年龄 
 	gz gongzi; 
 
 };						//员工信息 
@@ -85,6 +85,13 @@ void jiemian()
 	printf("*                                                                   *\n");
 	printf("*                                                                   *\n");
 	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+    printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
 	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 
 }
@@ -93,13 +100,15 @@ void jiemian()
 //判断两次密码是否一致，一致返回1，不一直返回0.
 int check(char a[],char b[])
 {
-	int i=0,flag=1;
+	int i=0,flag=0;
 
-	for( ; a[i]!='\0' && b[i]!='\0' && flag==1;i++)
+	for( ; a[i]!='\0' && b[i]!='\0' && flag==0;i++)
 	{
-		if( a[i] != b[i])
-			flag=0;
-		else flag=1;
+		if( a[i] == b[i])
+		{  flag=1;
+		   break; 
+		}	
+		else flag=0;
 	}
 	return flag;
 
@@ -731,7 +740,7 @@ int main()
 	xinxi people[ALL];
 	zhanghao hao[ALL];
 	yonghu yh[ALL];
-	int i=0,xuanze=1,N,M,ren=0;
+	int i=0,xuanze=1,N,M,ren;
 	char weizhi;
 	FILE *fp1,*fp2,*daochu,*fp3;
 
@@ -827,8 +836,8 @@ begin:
 	while(1)
 	{
 	//	static int zou=0;
-		int kai,ji=0,suan=0;
-		for(kai=0;kai<10;kai++)
+		int kai=0,ji=0,suan=0;
+		for(;kai<ALL;kai++)
 		{
 			if(check(admin,hao[kai].adm) && check(password,hao[kai].mima)) 
 			{
@@ -886,7 +895,7 @@ begin:
 		printf("6.导出员工信息");
 		gotoxy(20,12);
 		printf("7.关闭程序");
-		gotoxy(20,16);
+		gotoxy(20,21);
 		printf("按w与s控制方向，按z确认");
 
 
@@ -957,7 +966,7 @@ ziji:
 		gotoxy(20,9);
 		printf("4.关闭程序");
 
-		gotoxy(20,16);
+		gotoxy(20,21);
 		printf("按w与s控制方向，按z确认");
 
 
