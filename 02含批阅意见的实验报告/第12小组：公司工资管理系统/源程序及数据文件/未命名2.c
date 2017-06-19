@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<windows.h>
-#include <iostream>
+
 #include <conio.h>
 #include <string.h>
-using namespace std;
+
 #define NUM 20
 #define ALL 100
 
@@ -28,11 +28,11 @@ struct  gz                      //定义月份信息
 typedef struct gz gz;
 
 struct  xinxi
-{
-	char name[20];  //姓名 
-	char sex[20];    //性别 
-	char job[20];   //工作 
-	int old;
+{ 
+	char name[10];   //姓名 
+	char sex[3];    //性别 
+	char job[5];    //工作 
+	int old;	    //年龄 
 	gz gongzi; 
 
 };						//员工信息 
@@ -49,8 +49,8 @@ typedef struct zhanghao zhanghao; //账号信息
 
 struct  yonghu
 {
-	char adm[20];
-	char mima[20];
+	char adm[11];
+	char mima[11];
 };
 typedef struct yonghu yonghu;
 
@@ -70,36 +70,29 @@ void gotoxy(int x ,int y)
 void jiemian()
 {
 	system("cls");
-	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");//定义用户界面 
-	printf("*                                                                      	*\n");
-	printf("*                                                                  	    *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");	
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("*                                                                       *\n");
-	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");//定义用户界面 
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+    printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("*                                                                   *\n");
+	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 
 }
 
@@ -107,13 +100,15 @@ void jiemian()
 //判断两次密码是否一致，一致返回1，不一直返回0.
 int check(char a[],char b[])
 {
-	int i=0,flag=1;
+	int i=0,flag=0;
 
-	for( ; a[i]!='\0' && b[i]!='\0' && flag==1;i++)
+	for( ; a[i]!='\0' && b[i]!='\0' && flag==0;i++)
 	{
-		if( a[i] != b[i])
-			flag=0;
-		else flag=1;
+		if( a[i] == b[i])
+		{  flag=1;
+		   break; 
+		}	
+		else flag=0;
 	}
 	return flag;
 
@@ -288,11 +283,10 @@ void xiugai(xinxi a[],int N)
 
 void add(FILE *fp1,FILE *fp2)					//增加会员
 {
-	char c[20]={' '},d[20]={'\12'};
+	char c[2]={' '},d[2]={'\12'};
 	xinxi people;
 	fp1 = fopen("D:\\用户.txt","a+");
 	fp2 = fopen("D:\\员工信息.txt","a+");
-tian:
 
 	int j=0;
 	for( ; j<NUM ; j++ )
@@ -301,6 +295,7 @@ tian:
 		admin[j]=0;
 		cpassword[j]=0;
 	}
+
 
 //	admin[]
 	jiemian();
@@ -344,8 +339,9 @@ tian:
 		gotoxy(28,7);
 		printf("两次密码不同");
 		Sleep(3000);
-		goto tian;
+		getchar();
 	}
+
 
 	jiemian();
 	gotoxy(11,5);
@@ -427,6 +423,10 @@ tian:
 	printf("请输入员工第12月的工资:");
 	scanf("%d",&people.gongzi.Dec);
 	
+	jiemian();
+	gotoxy(11,5);
+	printf("添加成功！"); 
+	
 
 //这里加入导出程序
 	
@@ -499,7 +499,8 @@ void del(zhanghao a[],xinxi b[],int M)					//删除账号和密码
 	gotoxy(24,5);
 	scanf("%s",admin);
 
-	for(int kai=0;kai<10;kai++)
+	int kai;
+	for( kai=0;kai<10;kai++)
 		{
 		if(check(admin,a[kai].adm) && check(password,a[kai].mima))
 		{
@@ -588,7 +589,7 @@ void findall(xinxi a[],int N)		//查找信息			这里只显示最后一个月(12月)的工资，如
 	for( ; i<=N ; i++ )
 	{
 		gotoxy(11,5+i);
-		printf("%-14s %3s %16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
+		printf("%-14s%4s%16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
 	}
 //	Sleep(3000);
 	getch();
@@ -674,8 +675,8 @@ void shuishou(xinxi a[],int i)
 
 void tongji(xinxi a[],int n)
 {
-	int gongji=0,shouru=0;
-	for(int i=0;i<n;i++)
+	int gongji=0,shouru=0,i;
+	for( i=0;i<n;i++)
 	{
 		gongji=gongji+sui(a[i].gongzi.Jan)+sui(a[i].gongzi.Feb)+sui(a[i].gongzi.Mar)+sui(a[i].gongzi.Apr)+sui(a[i].gongzi.May)+sui(a[i].gongzi.Jun)+sui(a[i].gongzi.Jul)+sui(a[i].gongzi.Aug)+sui(a[i].gongzi.Sep)+sui(a[i].gongzi.Oct)+sui(a[i].gongzi.Nov)+sui(a[i].gongzi.Dec);
 		shouru=shouru+a[i].gongzi.Jan+a[i].gongzi.Feb+a[i].gongzi.Mar+a[i].gongzi.Apr+a[i].gongzi.May+a[i].gongzi.Jun+a[i].gongzi.Jul+a[i].gongzi.Aug+a[i].gongzi.Sep+a[i].gongzi.Oct+a[i].gongzi.Nov+a[i].gongzi.Dec;
@@ -739,7 +740,7 @@ int main()
 	xinxi people[ALL];
 	zhanghao hao[ALL];
 	yonghu yh[ALL];
-	int i=0,xuanze=1,N,M,ren=0;
+	int i=0,xuanze=1,N,M,ren;
 	char weizhi;
 	FILE *fp1,*fp2,*daochu,*fp3;
 
@@ -835,8 +836,8 @@ begin:
 	while(1)
 	{
 	//	static int zou=0;
-		int kai,ji=0,suan=0;
-		for(kai=0;kai<10;kai++)
+		int kai=0,ji=0,suan=0;
+		for(;kai<ALL;kai++)
 		{
 			if(check(admin,hao[kai].adm) && check(password,hao[kai].mima)) 
 			{
@@ -894,7 +895,7 @@ begin:
 		printf("6.导出员工信息");
 		gotoxy(20,12);
 		printf("7.关闭程序");
-		gotoxy(20,16);
+		gotoxy(20,21);
 		printf("按w与s控制方向，按z确认");
 
 
@@ -965,7 +966,7 @@ ziji:
 		gotoxy(20,9);
 		printf("4.关闭程序");
 
-		gotoxy(20,16);
+		gotoxy(20,21);
 		printf("按w与s控制方向，按z确认");
 
 
@@ -1012,5 +1013,3 @@ ziji:
 
 	return 0;
 } 
-
-
