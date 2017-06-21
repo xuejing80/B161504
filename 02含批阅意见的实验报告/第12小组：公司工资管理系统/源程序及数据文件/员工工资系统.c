@@ -47,7 +47,7 @@ struct  zhanghao
 };
 typedef struct zhanghao zhanghao; //账号信息 
 
-struct  yonghu
+struct  yonghu  //用户找好密码 
 {
 	char adm[11];
 	char mima[11];
@@ -55,7 +55,7 @@ struct  yonghu
 typedef struct yonghu yonghu;
 
 
-void gotoxy(int x ,int y)
+void gotoxy(int x ,int y)  //界面设置，定义printf打印的位置 
 {
 	int xx=0x0b;
 	HANDLE hOutput;
@@ -67,7 +67,7 @@ void gotoxy(int x ,int y)
 }
 
 
-void jiemian()
+void jiemian()  //界面函数 
 {
 	system("cls");
 	printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");//定义用户界面 
@@ -120,7 +120,7 @@ int check(char a[],char b[])
 
 
 
-void xiugai(xinxi a[],int N)
+void xiugai(xinxi a[],int N)//修改用户，通过用户的姓名定位 
 {
 	char z[2]={' '},x[2]={'\12'};
 	int kai;
@@ -131,28 +131,26 @@ void xiugai(xinxi a[],int N)
 //	int i=0;
 	jiemian();
 	gotoxy(11,5);
-	printf("需要修改的admin:");
+	printf("需要修改的姓名:");
 	gotoxy(11,6);
-	scanf("%s",zanshi);
+	scanf("%s",zanshi);//输入姓名 
 	getch;
 	gotoxy(20,6);
-//	ch[i]='\0';
+
 	
-	for(kai=0;kai<N;kai++)
+	for(kai=0;kai<N;kai++)//定位 
 	{
 		if(check(zanshi,a[kai].name))
 		{
 			break;
 		}
 	}
-	
-//	strcpy(a[kai].mima,ch);
-//	i=0;
+
 	getch;
 	jiemian();
 	gotoxy(11,5);
 	printf("请输入员工姓名:");
-	scanf("%s",a[kai].name);
+	scanf("%s",a[kai].name);//输入修改的各种信息 
 
 	jiemian();
 	gotoxy(11,5);
@@ -231,9 +229,9 @@ void xiugai(xinxi a[],int N)
 	scanf("%d",&a[kai].gongzi.Dec);
 
 
-//这里加入导出程序
+//这里加入导出程序，将输入的信息写入到文件 
 	int ji;
-	for(ji=0;ji<N;ji++)
+	for(ji=0;ji<kai;ji++)
 	{
 		fputs(a[ji].name,fp2);
 		fputs(z,fp2);
@@ -241,6 +239,43 @@ void xiugai(xinxi a[],int N)
 		fputs(a[ji].sex,fp2);
 		fputs(z,fp2);
 		fputs(a[ji].job,fp2);
+		fputs(z,fp2);		
+		fprintf(fp2,"%d",a[ji].old);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jan);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Feb);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Mar);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Apr);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.May);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jun);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jul);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Aug);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Sep);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Oct);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Nov);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Dec);
+		
+		fputs(x,fp2);
+//printf("1");测试文件写入是否成功，写入几次。上面是修改信息之前的信息 
+	}
+	{
+		fputs(a[kai].name,fp2);//将修改的信息写入文件 
+		fputs(z,fp2);
+		
+		fputs(a[kai].sex,fp2);
+		fputs(z,fp2);
+		fputs(a[kai].job,fp2);
 		fputs(z,fp2);		
 		fprintf(fp2,"%d",a[kai].old);		
 		fputs(z,fp2);
@@ -267,8 +302,47 @@ void xiugai(xinxi a[],int N)
 		fprintf(fp2,"%d",a[kai].gongzi.Nov);
 		fputs(z,fp2);
 		fprintf(fp2,"%d",a[kai].gongzi.Dec);
-
+//printf("写入");测试修改信息是否写入 
 		fputs(x,fp2);
+	}
+	ji=kai+1;
+	for(ji;ji<N;ji++)//通过最后循环将修改信息后面的信息写入文件 
+	{
+		fputs(a[ji].name,fp2);
+		fputs(z,fp2);
+		
+		fputs(a[ji].sex,fp2);
+		fputs(z,fp2);
+		fputs(a[ji].job,fp2);
+		fputs(z,fp2);		
+		fprintf(fp2,"%d",a[ji].old);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jan);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Feb);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Mar);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Apr);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.May);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jun);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Jul);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Aug);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Sep);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Oct);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Nov);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",a[ji].gongzi.Dec);
+		
+		fputs(x,fp2);
+//printf("1");测试写入是否成功，写入几次 
 
 	}
 	jiemian();
@@ -286,7 +360,7 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 	char c[2]={' '},d[2]={'\12'};
 	xinxi people;
 	fp1 = fopen("D:\\用户.txt","a+");
-	fp2 = fopen("D:\\员工信息.txt","a+");
+	fp2 = fopen("D:\\员工信息.txt","a+");//两个指针分别写入用户文件和信息文件 
 
 	int j=0;
 	for( ; j<NUM ; j++ )
@@ -318,7 +392,7 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 //	while(getchar() != )
 	while(password[i]=getch())
 	{
-		if(password[i]==13)  break;
+		if(password[i]==13)  break;//将输入的密码变成* 
         printf("*");
 		i++;
 	}
@@ -328,7 +402,7 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 	gotoxy(28,7);
 	while(cpassword[i]=getch())
 	{
-		if(cpassword[i]==13) break;
+		if(cpassword[i]==13) break;//确认密码变成* 
         printf("*");
 		i++;
 	}
@@ -346,7 +420,7 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 	jiemian();
 	gotoxy(11,5);
 	printf("请输入员工姓名:");
-	scanf("%s",people.name);
+	scanf("%s",people.name);//数据录入 
 
 	jiemian();
 	gotoxy(11,5);
@@ -435,8 +509,8 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 	fputs(admin,fp1);
 	fputs(c,fp1);
 
-	fputs(password,fp1);		
-
+	fputs(password,fp1);//写入用户文件		
+	fseek(fp2,0,2); 
  	fputs(d,fp2);
 	fputs(people.name,fp2);
 	fputs(c,fp2);
@@ -486,97 +560,186 @@ void add(FILE *fp1,FILE *fp2)					//增加会员
 //每一次读取这个函数，文件用写，然后将删除元素之后的数组写入
 
 
-void del(zhanghao a[],xinxi b[],int M)					//删除账号和密码
+void del(zhanghao a[],xinxi b[],int N)					//删除账号和密码
 {
-	FILE *fp,*fp1;
-	fp = fopen("D:\\用户.txt","w");
-	int i=0,zou=0,ji=0;
-	gotoxy(11,5);
-	printf("delete admin:");
-	gotoxy(11,6);
-
-//输入需要删除的账号和密码
-	gotoxy(24,5);
-	scanf("%s",admin);
-
+	char z[2]={' '},x[2]={'\12'};//添加空格和换行数组 
+	char y[6]={'no'}; //用来擦出信息的数组 存在warning需要解答 
 	int kai;
-	for( kai=0;kai<10;kai++)
-		{
-		if(check(admin,a[kai].adm) && check(password,a[kai].mima))
+	char zanshi[20];
+//	yonghu d[1];
+	FILE *fp2;
+	fp2 = fopen("D:\\员工信息.txt","w");
+//	int i=0;
+	jiemian();
+	gotoxy(11,5);
+	printf("需要删除的姓名:");//这里用到的功能和有修改相同，因个人能力有限 
+	gotoxy(11,6);
+	scanf("%s",zanshi);
+	getch;
+	gotoxy(20,6);
+//	ch[i]='\0';
+	
+	for(kai=0;kai<N;kai++)
+	{
+		if(check(zanshi,b[kai].name))
 		{
 			break;
 		}
 	}
-	
-//**************************先在字符串中找到*************
-	i=0;				
-	while(i<M)
+	int ji=0;
+	for(ji;ji<kai;ji++)
 	{
-		if(check(a[i].adm,admin))
-		{
-			for(ji=0;ji<11;ji++)
-			{
-				a[i].adm[ji]=' ';
-				a[i].mima[ji]=' ';
-			}
-			if(check(b[i].name,admin))
-			{
-				
-				memset(b[i].name,0,16);
-				memset(b[i].sex,0,3);
-				memset(b[i].job,0,16);
-				b[i].old=0;
-				b[i].gongzi.Jan=0;
-				b[i].gongzi.Feb=0;
-				b[i].gongzi.Mar=0;
-				b[i].gongzi.Apr=0;
-				b[i].gongzi.May=0;
-				b[i].gongzi.Jun=0;
-				b[i].gongzi.Jul=0;
-				b[i].gongzi.Aug=0;
-				b[i].gongzi.Sep=0;
-				b[i].gongzi.Oct=0;
-				b[i].gongzi.Nov=0;
-				b[i].gongzi.Dec=0;
-			}
-		}
-		i++;
+		fputs(b[ji].name,fp2);
+		fputs(z,fp2);
+		
+		fputs(b[ji].sex,fp2);
+		fputs(z,fp2);
+		fputs(b[ji].job,fp2);
+		fputs(z,fp2);		
+		fprintf(fp2,"%d",b[ji].old);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jan);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Feb);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Mar);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Apr);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.May);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jun);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jul);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Aug);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Sep);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Oct);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Nov);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Dec);
+		
+		fputs(x,fp2);
+//printf("1");//删除‘//’可以测试程序写入次数 
+
+	}
+{
+strcpy(b[kai].name,y);//printf("a");测试赋值是否成功		
+strcpy(b[kai].sex,y);
+
+strcpy(b[kai].job,y);
+b[kai].old=0;		
+	
+b[kai].gongzi.Jan=0;
+	
+b[kai].gongzi.Feb=0;	
+
+b[kai].gongzi.Mar=0;
+
+b[kai].gongzi.Apr=0;
+
+b[kai].gongzi.May=0;
+
+b[kai].gongzi.Jun=0;
+	
+b[kai].gongzi.Jul=0;
+
+b[kai].gongzi.Aug=0;
+
+b[kai].gongzi.Sep=0;
+
+b[kai].gongzi.Oct=0;
+	
+b[kai].gongzi.Nov=0;
+	
+b[kai].gongzi.Dec=0;
+//printf("1");测试赋值成功？ 
+}
+	{
+		fputs(b[kai].name,fp2);//修改的数据，因为函数体不容易实现后面的顺次覆盖会出现混乱和bug 
+		fputs(z,fp2);		   //所以使用了修改原始数据为0的方式擦出 
+		
+		fputs(b[kai].sex,fp2);
+		fputs(z,fp2);
+		fputs(b[kai].job,fp2);
+		fputs(z,fp2);		
+		fprintf(fp2,"%d",b[kai].old);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Jan);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Feb);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Mar);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Apr);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.May);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Jun);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Jul);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Aug);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Sep);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Oct);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Nov);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[kai].gongzi.Dec);
+//printf("1");测试数据写入 
+		fputs(x,fp2);
+}
+
+	ji=kai+1;printf("e");
+	for(ji;ji<N;ji++)
+	{		//printf("ha");测试for循环执行次数 
+		fputs(b[ji].name,fp2);
+		fputs(z,fp2);
+		
+		fputs(b[ji].sex,fp2);
+		fputs(z,fp2);
+		fputs(b[ji].job,fp2);
+		fputs(z,fp2);		
+		fprintf(fp2,"%d",b[ji].old);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jan);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Feb);		
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Mar);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Apr);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.May);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jun);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Jul);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Aug);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Sep);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Oct);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Nov);
+		fputs(z,fp2);
+		fprintf(fp2,"%d",b[ji].gongzi.Dec);
+		
+		fputs(x,fp2);
+//printf("1");测试 
+
 	}
 
-	//这里就是文件删除功能
-	
 
-//*****************再次把结构体写入文件******************
-
-	for(ji=0;ji<M;ji++)
-	{
-		fwrite(a[ji].adm,sizeof(a[ji].adm),1,fp);
-		fwrite(a[ji].mima,sizeof(a[ji].mima),1,fp);
-		fwrite(b[ji].name,sizeof(b[ji].name),1,fp1);
-		fwrite(b[ji].sex,sizeof(b[ji].sex),1,fp1);
-		fwrite(b[ji].job,sizeof(b[ji].job),1,fp1);
-		fwrite(&b[ji].old,sizeof(b[ji].old),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Jan),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Feb),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Mar),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Apr),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.May),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Jun),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Jul),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Aug),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Sep),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Oct),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Nov),1,fp1);
-		fwrite(&b[ji].gongzi,sizeof(b[ji].gongzi.Dec),1,fp1);
-	}
-
-
-
-
-	jiemian();
-	gotoxy(28,7);
-	printf("删除成功!");
-	Sleep(3000);
+	gotoxy(25,7);
+	printf("删除成功");
+	sleep(3000);		
 }
 
 
@@ -586,12 +749,12 @@ void findall(xinxi a[],int N)		//查找信息			这里只显示最后一个月(12月)的工资，如
 	jiemian();
 	gotoxy(11,4);
 	printf("  会  员  名     性别      职       业    年龄  工资\n");
-	for( ; i<=N ; i++ )
+	for( ; i<N ; i++ )
 	{
 		gotoxy(11,5+i);
 		printf("%-14s%4s%16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
 	}
-//	Sleep(3000);
+	//sleep（3000） 
 	getch();
 }
 
@@ -608,7 +771,7 @@ void findmyself(xinxi a[],int i)		//同上
 
 
 
-int sui(int shouru)
+int sui(int shouru)//税收计算 
 {
 	int suishou=0;
 	if(shouru<1500)
@@ -668,7 +831,10 @@ void shuishou(xinxi a[],int i)
 	gotoxy(11,15);
 	printf("你第12月应该支付：%d的税收。",sui(a[i].gongzi.Dec));
    
-	getchar();
+	
+ 
+	getch();
+		//sleep(3000);
 }
 
 
@@ -684,33 +850,17 @@ void tongji(xinxi a[],int n)
 	jiemian();
 	gotoxy(11,4);
 	printf("这一年，共有员工%d人，工资总数为%d，税收总数为%d",n,shouru,gongji);
-	getchar();
+
+
+	getch();
+		//sleep(3000);
 }
 
 
 
 
-void output()
-{
-	FILE *fp1, *mubiao;
-	fp1 = fopen("D:\\员工信息.txt","a+");
-	mubiao = fopen("D:\\output.txt","w");
-	jiemian();
-
-	char ch ;
-	while( (ch = fgetc(fp1)) != EOF )
-	{
-		fputc( ch , mubiao );
-	}
 
 
-
-//这里加入导出程序
-
-	gotoxy(28,7);
-	printf("导出成功!");
-	Sleep(3000);
-}
 //********************************从这里开始功能函数结束*************************************
 
 
@@ -892,9 +1042,7 @@ begin:
 		gotoxy(20,10);
 		printf("5.显示统计数据");
 		gotoxy(20,11);
-		printf("6.导出员工信息");
-		gotoxy(20,12);
-		printf("7.关闭程序");
+		printf("6.关闭程序");
 		gotoxy(20,21);
 		printf("按w与s控制方向，按z确认");
 
@@ -925,12 +1073,11 @@ begin:
 	switch(xuanze)
 	{
 		case 1:add(fp3,fp2);break;
-		case 2:del(hao,people,M);break;
+		case 2:del(hao,people,N);break;
 		case 3:findall(people,N);break;
 		case 4:xiugai(people,N);break;
 		case 5:tongji(people,N);break;
-		case 6:output();break;
-		case 7:system("cls");
+		case 6:system("cls");
 	}
 
 //	Sleep(3000);
