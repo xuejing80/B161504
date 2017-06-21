@@ -13,6 +13,7 @@ typedef struct Custome
 	char tel[12];
 	char id[5];
 	int food[20];
+	int service;
 	int total;
 }Custome;
 
@@ -241,7 +242,7 @@ void add()					//增加并保存会员信息
 	fp = fopen("member.txt","a+");
 	gotoxy(25,10);
 	printf("请输入会员姓名:");
-	scanf("%s",people.name);
+	gets(people.name);
 
 	gotoxy(25,11);
 	printf("请输入会员性别:");
@@ -310,7 +311,6 @@ void delet()
     while((getc(f1)) != EOF)
     fputs(c,f1);
     fclose(f1);
-    printf("清空成功!");
 }
 
 void main()
