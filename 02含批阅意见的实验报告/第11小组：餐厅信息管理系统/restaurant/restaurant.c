@@ -11,9 +11,8 @@ typedef struct Custome
     char name[20];
 	char sex[6];
 	char tel[12];
-	char id[4];
+	char id[5];
 	int food[20];
-	int service;
 	int total;
 }Custome;
 
@@ -75,8 +74,8 @@ void startup(void)
 
 void tableNum()//按桌号查找
 {
-	int num,i=0,j=0,k,sum=0,m=10;
-	gotoxy(25,9);
+	int num,i=0,j=0,k,sum=0,m=11;
+	gotoxy(25,10);
 	printf("请输入桌号:");
 	scanf("%d",&num);
 	fflush(stdin);
@@ -86,7 +85,7 @@ void tableNum()//按桌号查找
 		{
            while(database.c[i].food[j]!=0)
 		   {
-			   for (k=0;k<20;k++)
+			   for (k=0;k<=20;k++)
 			   {
 				   if (database.f[k].num==database.c[i].food[j])
 				   {
@@ -113,9 +112,9 @@ void tableNum()//按桌号查找
 
 void telNum()//按手机号查找
 {
-	int i=0,j=0,k,sum=0,m=10;
+	int i=0,j=0,k,sum=0,m=11;
 	char tel[12];
-	gotoxy(25,9);
+	gotoxy(25,10);
 	printf("请输入手机号:");
 	gets(tel);
 	while(database.c[i].num!=0)
@@ -124,7 +123,7 @@ void telNum()//按手机号查找
 		{
 			while(database.c[i].food[j]!=0)
 			{
-				for (k=0;k<20;k++)
+				for (k=0;k<=20;k++)
 				{
 					if (database.f[k].num==database.c[i].food[j])
 					{
@@ -151,9 +150,9 @@ void telNum()//按手机号查找
 
 void id()//按id查找
 {
-	int i=0,j=0,k,sum=0,m=10;
-	char id[4];
-	gotoxy(25,9);
+	int i=0,j=0,k,sum=0,m=11;
+	char id[5];
+	gotoxy(25,10);
 	printf("请输入卡号:");
 	gets(id);
 	while(database.c[i].num!=0)
@@ -162,7 +161,7 @@ void id()//按id查找
 		{
 			while(database.c[i].food[j]!=0)
 			{
-				for (k=0;k<20;k++)
+				for (k=0;k<=20;k++)
 				{
 					if (database.f[k].num==database.c[i].food[j])
 					{
@@ -237,27 +236,45 @@ void Jm()
 void add()					//增加并保存会员信息 
 {
 	FILE *fp; 
-	char c[2]={' '},d[2]={'\n'};
+	char c[2]={' '},d[2]={'\n'},e[2]={'#'};
 	Custome people;
 	fp = fopen("member.txt","a+");
-	gotoxy(25,9);
+	gotoxy(25,10);
 	printf("请输入会员姓名:");
 	scanf("%s",people.name);
 
-	gotoxy(25,10);
+	gotoxy(25,11);
 	printf("请输入会员性别:");
 	scanf("%s",people.sex);
 
-	gotoxy(25,11);
+	gotoxy(25,12);
 	printf("请输入会员卡号:");
 	scanf("%s",people.id);
 
-	gotoxy(25,12);
+	gotoxy(25,13);
 	printf("请输入会员手机:");
 	scanf("%s",people.tel);
 
-    fseek(fp,0,2);
+	fputs(e,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
     fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
+	fputs(c,fp);
 	fputs(people.name,fp);
 	fputs(c,fp);
 	fputs(people.sex,fp);
@@ -268,7 +285,7 @@ void add()					//增加并保存会员信息
 	fputs(d,fp);
 	fclose(fp);
 
-	gotoxy(25,13);
+	gotoxy(25,18);
 	printf("添加成功!");
 	Sleep(3000);
 }
@@ -278,11 +295,22 @@ void draw()
     FILE *f1;
     char c;
     f1 = fopen("member.txt","r");
-    gotoxy(25,9);
+    gotoxy(25,10);
     printf("会员信息表 \n");
     while((c=getc(f1)) != EOF)
     printf("%c",c);
     fclose(f1);
+}
+
+void delet()
+{
+	FILE *f1;
+    char c[2]={' '};
+    f1 = fopen("database.txt","w+");
+    while((getc(f1)) != EOF)
+    fputs(c,f1);
+    fclose(f1);
+    printf("清空成功!");
 }
 
 void main()
@@ -312,7 +340,7 @@ void main()
 	{3,"李光","女","18851821076","18",{2,3,7,8},0,0},
 	{4,"张嘉豪","男","13681452850","21",{4,13,17,9,7,8},0,0},
 	{5,"陈雪瑞","女","13657421048","270",{4,5,6,7,8},0,0},
-	{6,"张秩序","男","13123161269","2701",{1,5,16,7,8},0,0},
+	{6,"张秩序","男","13123161269","2701",{4,5,8,20},0,0},
 	{7,"刘一夫","男","13799434844","2991",{14,15,16,7,8},0,0},
 	{8,"张梦洁","女","13802501687","2837",{4,5,16,7,18},0,0},
 	{9,"吴梅芳","女","13654807040","2741",{4,11,12,17,8},0,0},
@@ -329,7 +357,7 @@ void main()
 	{20,"黄光宇","男","13625492584","527",{8,20},0,0}};
 	FILE *fp = fopen("database.txt", "w");
 	fwrite(p, sizeof(p), 1, fp);
-	fwrite(q, sizeof(q), 1, fp);*/
+	fwrite(q, sizeof(q), 1, fp);*/ 
   int flag,k=1;
   char a[12],adm[12]="18750176089";
   char b[7],key[7]="980829";
@@ -361,6 +389,8 @@ void main()
   gotoxy(25,7);
   printf("5.打印会员信息表\n");
   gotoxy(25,8);
+  printf("6.清空当天点菜清单\n");
+  gotoxy(25,9);
   scanf("%d",&flag);
   fflush(stdin);
   switch(flag)
@@ -370,7 +400,8 @@ void main()
   case 3:id();system("pause");system("cls");break;
   case 4:add();system("pause");system("cls");break;
   case 5:draw();system("pause");system("cls");break;
-  case 6:k=0;break;
+  case 6:delet();system("pause");system("cls");break;
+  case 7:k=0;break;
   }
   }
   }
