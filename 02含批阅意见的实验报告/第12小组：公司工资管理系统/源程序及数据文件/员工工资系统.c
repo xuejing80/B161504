@@ -978,7 +978,7 @@ begin:
 		i++;
 	}
 
-//	getch();
+
 
 
 
@@ -1081,7 +1081,7 @@ begin:
 	}
 
 //	Sleep(3000);
-	if(xuanze != 7) 
+	if(xuanze != 6) 
 	{
 		jiemian();
 		daoshu();
