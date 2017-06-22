@@ -7,15 +7,15 @@ int readC(CAR  *c , int n)          /*¶ÁÈëÑ§Éú¼ÇÂ¼Öµ£¬Ñ§ºÅÎª0»ò¶ÁÂú¹æ¶¨ÌõÊı¼ÇÂ¼Ê
 	int i;
 	for (i=0;i<n;i++)
 	{    
-		printf("Input one car information\n");
-		printf("num:  ");
+		printf("ÇëÊäÈëÒ»Á¾³µµÄĞÅÏ¢\n");
+		printf("Æû³µ±àºÅ:  ");
 	        scanf("%ld", &c[i].num);
 	
-		printf("name: ");
+		printf("Æû³µĞÍºÅ: ");
 		scanf("%s",c[i].name);	
-		printf("original price");
+		printf("Ô­¼Û£º");
                 scanf("%ld",&c[i].p1);
-                printf("present price");
+                printf("ÏÖ¼Û£º");
                 scanf("%ld",&c[i].p2);
     	        c[i].p3=c[i].p1-c[i].p2;                
 		
@@ -30,10 +30,10 @@ void printC ( CAR  *c , int n)       /*Êä³öËùÓĞÑ§Éú¼ÇÂ¼µÄÖµ*/
 	for (i=0;i<n;i++)
 	{
 		printf("%8ld  ", c[i].num);
-		printf("%8s", c[i].name);
-		printf("%7d", c[i].p1);
-	        printf("%7d",c[i].p2);
-	    printf("%7d",c[i].p3);
+		printf("%15s", c[i].name);
+		printf("%13d", c[i].p1);
+	        printf("%13d",c[i].p2);
+	    printf("%13d\n",c[i].p3);
 	    
 	}
 }
@@ -48,8 +48,10 @@ int equal(CAR c1,CAR c2,int condition)  /*ÈçºÎÅĞ¶ÏÁ½¸öStudent¼ÇÂ¼ÏàµÈ*/
 		else return 0;
      }
 
- else if (condition==3)                /*Èç¹û²ÎÊıconditionµÄÖµÎª4£¬Ôò±È½Ï×Ü·Ö*/
+ else if (condition==3)                /*Èç¹û²ÎÊıconditionµÄÖµÎª3£¬Ôò±È½Ï×Ü·Ö*/
 		return c1.p3==c2.p3;
+ else if (condition==4)
+	    return c1.rank==c2.rank;
 	else return 1;                       /*ÆäÓàÇé¿ö·µ»Ø1*/
 } 
 
@@ -74,6 +76,36 @@ void reverse(CAR c[],int n)             /*Êı×éÔªËØÄæÖÃ*/
 	}
 }
 
+void calcuRank(CAR c[],int n)
+{int i;
+sortC(c,n,2);
+reverse(c,n);
+c[0].rank=1;
+for(i=1;i<n;i++)
+{
+if (equal(c[i],c[i-1],3))
+	c[i].rank=c[i-1].rank;
+else
+	c[i].rank=i+1;}
+}
+
+
+
+void printrank(CAR c[],int n)
+{  int i;
+	sortC(c,50,4);
+
+for (i=0;i<n;i++)
+	{
+		printf("%8ld  ", c[i].num);
+		printf("%15s", c[i].name);
+		printf("%13d", c[i].p1);
+	        printf("%13d",c[i].p2);
+	    printf("%13d\n",c[i].p3);
+	    
+	}
+sortC(c,50,1);
+}
 
 
 
@@ -119,7 +151,7 @@ int insertC(CAR c[],int n,CAR ca)              /*ÏòstuÊı×éÖĞÒÀÑ§ºÅµİÔö²åÈëÒ»¸öÔª
 	{
 		if (equal(c[i],ca,1))                      /*Ñ§ºÅÏàÍ¬²»ÔÊĞí²åÈë£¬±£Ö¤Ñ§ºÅµÄÎ¨Ò»ĞÔ*/
 		{
-		    printf("this record exist,can not insert again!\n");
+		    printf("ÕâÌõ¼ÇÂ¼ÒÑ´æÔÚ£¬ÎŞ·¨ÔÙ´Î²åÈë!\n");
 		    return n;
 		}
 	}

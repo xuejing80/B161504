@@ -11,6 +11,7 @@ struct CAR                   /*学生记录的数据域*/
 		int p1;
 		int p2;
 		int p3;
+		int rank;                                                                                                                                                                                                                                                                                                                                                            
 };
 typedef struct CAR CAR;
 #define sizeC sizeof(CAR)      /*一个学生记录所需要的内存空间大小*/
@@ -20,8 +21,8 @@ void printC(CAR  *c , int n);   /*输出所有学生记录的值*/
 int equal(CAR c1,CAR c2,int condition);  /*根据condition条件判断两个Student类型数据相等否*/
 int larger(CAR c1,CAR c2,int condition);  /*根据condition比较Student类型数据大小*/
 void reverse(CAR c[],int n);             /*学生记录数组元素逆置*/
-
-
+void calcuRank(CAR c[],int n);
+void printrank(CAR c[],int n);
 
 void sortC(CAR c[],int n,int condition);   /*选择法从小到大排序，按condition所规定的条件*/
 

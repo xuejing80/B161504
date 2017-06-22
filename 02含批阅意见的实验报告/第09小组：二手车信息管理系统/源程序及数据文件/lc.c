@@ -6,7 +6,7 @@
 
 void printHead( )      /*´òÓ¡Ñ§ÉúÐÅÏ¢µÄ±íÍ·*/
 {
-printf("%8s%10s%8s%6s%6s\n","±àºÅ","³µÐÍ","Ô­¼Û","ÏÖ¼Û","²î¼Û");
+printf("%7s%10s%13s%7s%7s%7s\n","±àºÅ","³µÐÍ","Ô­¼Û","ÏÖ¼Û","²î¼Û","Ãû´Î");
 }
 
 void menu( )         /*¶¥²ã²Ëµ¥º¯Êý*/
@@ -24,6 +24,7 @@ void menu( )         /*¶¥²ã²Ëµ¥º¯Êý*/
 		printf("******** 1. ÏÔÊ¾»ù±¾ÐÅÏ¢ ********\n");
 		printf("******** 2. »ù±¾ÐÅÏ¢¹ÜÀí ********\n");
         printf("******** 3. ¸ù¾ÝÌõ¼þ²éÑ¯ ********\n");
+        printf("******** 4. ¸ù¾Ý²î¼ÛÅÅÐò ********\n");
 		printf("******** 0. ÍË³ö         ********\n");
 }
 
@@ -53,18 +54,18 @@ int baseManage(CAR c[],int n)    	     /*¸Ãº¯ÊýÍê³É»ù±¾ÐÅÏ¢¹ÜÀí*/
 do
 	    {   
 menuBase( );                  /*ÏÔÊ¾¶ÔÓ¦µÄ¶þ¼¶²Ëµ¥*/
-printf("choose one operation you want to do:\n");
+printf("ÇëÑ¡ÔñÒ»¸öÑ¡Ïî:\n");
 		     scanf("%d",&choice);	          /*¶ÁÈëÑ¡Ïî*/
 		     switch(choice)
 		     {
 			   case 1:	 readC(&ca,1);       /*¶ÁÈëÒ»Ìõ´ý²åÈëµÄÑ§Éú¼ÇÂ¼*/
 					 n=insertC(c,n,ca);   /*µ÷ÓÃº¯Êý²åÈëÑ§Éú¼ÇÂ¼*/
 					 break;
-			   case 2:  printf("Input the number deleted\n");
+			   case 2:  printf("ÇëÊäÈëÒªÉ¾³ýµÄ±àºÅ\n");
 					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÉ¾³ýµÄÑ§ÉúÑ§ºÅ*/
 					 n=deleteC(c,n,ca);   /*µ÷ÓÃº¯ÊýÉ¾³ýÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
 					 break;
-			   case 3:  printf("Input the number modified\n");
+			   case 3:  printf("ÇëÊäÈëÒªÐÞ¸ÄµÄ±àºÅ\n");
 					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÐÞ¸ÄµÄÑ§ÉúÑ§ºÅ*/
 				      t=searchC(c,n,ca,1,find) ; /*µ÷ÓÃº¯Êý²éÕÒÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
 				      if (t)                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼´æÔÚ*/
@@ -73,7 +74,7 @@ printf("choose one operation you want to do:\n");
 					      c[find[0]]=ca;    /*½«¸Õ¶ÁÈëµÄ¼ÇÂ¼¸³Öµ¸øÐèÒªÐÞ¸ÄµÄÊý×é¼ÇÂ¼*/ 					 
 					  }					 
 					 else                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼²»´æÔÚ*/ 
- printf("this car is not in,can not be modified.\n"); /*Êä³öÌáÊ¾ÐÅÏ¢*/
+ printf("ÕâÁ¾³µ²»´æÔÚ£¬ÎÞ·¨ÐÞ¸Ä.\n"); /*Êä³öÌáÊ¾ÐÅÏ¢*/
 					 break;
 			    case 0: break;
 		    }
@@ -90,14 +91,14 @@ CAR ca;
 	   do
 {
 			menuSearch( );                         /*ÏÔÊ¾¶ÔÓ¦µÄ¶þ¼¶²Ëµ¥*/
-			printf("choose one operation you want to do:\n");
+			printf("Ñ¡ÔñÒ»¸öÑ¡Ïî:\n");
 			scanf("%d",&choice);
 			switch(choice)
 			{
-				case 1:   printf("Input a CAR\'s num will be searched:\n");
+				case 1:   printf("ÇëÊäÈëÒª²éÑ¯µÄÆû³µ±àºÅ:\n");
 				      scanf("%ld",&ca.num);         /*ÊäÈë´ý²éÑ¯Ñ§ÉúµÄÑ§ºÅ*/
 					  break;
-				case 2:   printf("Input a CAR\'s name will be searched:\n");
+				case 2:   printf("ÇëÊäÈëÒª²éÑ¯µÄÆû³µÐÍºÅ:\n");
 				      scanf("%s",ca.name);	          /*ÊäÈë´ý²éÑ¯Ñ§ÉúµÄÐÕÃû*/		  
 				      break;   
 				
@@ -113,7 +114,7 @@ CAR ca;
 	      	 printC(&c[f[i]],1);      /*Ã¿´ÎÊä³öÒ»Ìõ¼ÇÂ¼*/
 				}
 		    		else
-			    	    printf("this record does not exist!\n"); /*Èç¹û²éÕÒ²»µ½ÔªËØ£¬ÔòÊä³öÌáÊ¾ÐÅÏ¢*/
+			    	    printf("ÕâÌõ¼ÇÂ¼²»´æÔÚ!\n"); /*Èç¹û²éÕÒ²»µ½ÔªËØ£¬ÔòÊä³öÌáÊ¾ÐÅÏ¢*/
 		     }		
 	    }while (choice);
 }
@@ -123,14 +124,17 @@ int runMain(CAR c[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦ÄÜÑ¡Ô
 		switch(choice)
 		{
 			case 1: printHead( );           /* 1. ÏÔÊ¾»ù±¾ÐÅÏ¢*/
-				 sortC(c,n,1);         /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÅÅÐò¼ÇÂ¼*/ 
-          	 printC(c,n);          /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÊä³öËùÓÐ¼ÇÂ¼*/
+				 sortC(c,n,1);          /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÅÅÐò¼ÇÂ¼*/ 
+          	 printC(c,n);         /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÊä³öËùÓÐ¼ÇÂ¼*/
 					break;
 			case 2: n=baseManage(c,n);    /* 2. »ù±¾ÐÅÏ¢¹ÜÀí*/
 			   	     break;
 		
 			case 3: searchManage(c,n);     /* 5. ¸ù¾ÝÌõ¼þ²éÑ¯*/
 				     break;
+			case 4: calcuRank(c,n);
+				    printrank(c,n);
+					break;
           case 0: break;
 		}
 		return n;
@@ -148,12 +152,12 @@ int main( )
 	do
 	     {
 	         menu();                      /*ÏÔÊ¾Ö÷²Ëµ¥*/
-	         printf("Please input your choice: ");
+	         printf("ÇëÊäÈëÄúµÄÑ¡Ôñ: ");
 	         scanf("%d",&choice);
 	         if (choice>=0&&choice<=5)
 	              n=runMain(c,n,choice);    /*Í¨¹ýµ÷ÓÃ´Ëº¯Êý½øÐÐÒ»¼¶¹¦ÄÜÏîµÄÑ¡ÔñÖ´ÐÐ*/
 	         else 
-		          printf("error input,please input your choice again!\n");
+		          printf("ÊäÈë´íÎó£¬ÇëÄúÖØÐÂÊäÈë!\n");
 	} while (choice);
 	sortC(c,n,1);                   /*´æÈëÎÄ¼þÇ°°´Ñ§ºÅÓÉÐ¡µ½´óÅÅÐò*/ 
 	     saveFile(c,n);                   /*½«½á¹û´æÈëÎÄ¼þ*/
