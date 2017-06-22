@@ -38,8 +38,8 @@ char menu_select ()						//定义menu_select函数，用来完成菜单功能
 {
 	char select ;
 	printf ("\n\n--------------------------欢迎使用旅店信息管理系统---------------------------\n\n");
-	printf ("1.创建旅店信息\n2.查看旅店信息\n3.查看某一房间信息\n4.查看房客信息\n");
-	printf ("5.查找某一房客信息\n6.房客入住\n7.旅客退房\n8.退出管理系统\n");
+	printf ("1.创建旅店信息\n2.查看旅店信息\n3.查看某一房间信息\n4.查看旅客信息\n");
+	printf ("5.查找某一旅客信息\n6.旅客入住\n7.旅客换房\n8.旅客退房\n9.退出管理系统\n");
 	printf ("\n-----------------------------------------------------------------------------\n");
 	select=getch();
 	return select ;						//返回select的值
@@ -53,11 +53,11 @@ void in_information()					//定义in_information函数，完成创建旅店信息功能
 	scanf  ("%s",choice);
 	if((strcmp(choice,"Y")!=0)&&(strcmp(choice,"y")!=0))
 		return;
-	if ((fp=fopen("information.txt","w"))==NULL)
+	if ((fp=fopen("information.txt","wb"))==NULL)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	printf("\n请创建新的旅店信息(以#结束)：\n");		//提示输入旅店信息
 	ch=getchar();
@@ -74,11 +74,11 @@ void out_information()				//定义out_information函数，完成查看旅店信息功能
 {
 	FILE *fp;
 	char ch ;
-	if ((fp=fopen("information.txt","r"))==NULL)     
+	if ((fp=fopen("information.txt","rb"))==NULL)     
 	{
 		printf ("无法打开文件！\n");
 		getch();
-	    exit(0);
+	    system("pause");system("cls");main();
 	}
 	ch=fgetc(fp);
 	system("cls");
@@ -99,11 +99,11 @@ struct Hotel * regeist ()				//定义regeist函数，用来完成旅客入住功能
 	int number ;
 	struct Hotel *head,*p1,*p2 ;
 	head=NULL ;
-	if((fp=fopen("resturant.txt","a+"))==NULL)
+	if((fp=fopen("resturant.txt","ab+"))==NULL)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	do
 	{
@@ -113,7 +113,7 @@ struct Hotel * regeist ()				//定义regeist函数，用来完成旅客入住功能
 	{
 		printf ("动态内存分配失败！\n");	//如果动态内存分配失败，返回失败信息
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 		printf ("\n请登记入住信息！\n");			//开始登记旅客信息
 		printf ("roomnumber(%d~%d)：",MIN,MAX);
@@ -121,6 +121,7 @@ struct Hotel * regeist ()				//定义regeist函数，用来完成旅客入住功能
 		if (number<MIN||number>MAX)					//假设该旅店只有1~30间房间
 		{
 			printf ("\a\nError ！");
+			return;
 		}
 		check (number);					//检查该房间是否已经有旅客入住了
 		p1->room_number=number ;		//在该房间没有旅客时，登记入住
@@ -228,20 +229,20 @@ void show_all()						//定义是show_all函数，用来显示所有旅客信息
 	head=load();
 	pa= head->next;
 	printf ("\n所有入住旅客的信息如下：\n");
+	printf ("roomnumber:	");
+	printf ("name：		");
+	printf ("sex：		");
+	printf ("ID:		");
+	printf ("paid：		");
+	printf ("date：		\n");
 	while (pa)										//显示所有的旅客信息
-	{
-		printf ("\n");
-		printf ("roomnumber:\t%d",pa->room_number);
-		printf ("\n");
-		printf ("name：\t\t%s",pa->name);
-		printf ("\n");
-		printf ("sex：\t\t%s",pa->sex);
-		printf ("\n");
-		printf ("ID:\t\t%s",pa->ID);
-		printf ("\n");
-		printf ("paid：\t\t%s",pa->paid);
-		printf ("\n");
-		printf ("date：\t\t%d %d %d",pa->inyear,pa->inmonth,pa->inday);
+	{		
+		printf ("%d		",pa->room_number);		
+		printf ("%s		",pa->name);		
+		printf ("%s		",pa->sex);		
+		printf ("%s		",pa->ID);		
+		printf ("%s		",pa->paid);
+		printf ("%d %d %d",pa->inyear,pa->inmonth,pa->inday);
 		printf ("\n");
 		pa = pa->next;
 	}
@@ -303,6 +304,7 @@ void change()
 {
 	struct Hotel *M ;
 	M=change_change();
+	change_save(M);
 }
 struct Hotel * change_change ()
 {
@@ -342,7 +344,7 @@ struct Hotel * change_change ()
 				if (newroom_number<MIN||newroom_number>MAX)
 				{
 					printf ("\aError！");
-					exit(0);
+					system("pause");system("cls");main();
 				}
 				check (newroom_number);
 				pa->room_number=newroom_number ;
@@ -353,7 +355,7 @@ struct Hotel * change_change ()
 		else
 		{
 			printf ("\n该房间还没有旅客入住！\n");
-			exit(0);
+			system("pause");system("cls");main();
 		}
 	}
 	return (head) ;
@@ -367,7 +369,7 @@ void change_save(struct Hotel *Q)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	while(L)
 	{
@@ -396,7 +398,7 @@ struct Hotel * fire_delet()
 	{
 		printf ("动态内存分配失败！\n");	//如果动态内存分配失败，返回失败信息
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	printf ("\n请输入需要退房的旅客姓名：");
 	scanf  ("%s",inname);
@@ -443,7 +445,7 @@ struct Hotel * fire_delet()
 		{
 			printf ("\n没有查找到该旅客的信息！\n");
 			getch();
-			exit(0);
+			system("pause");system("cls");main();
 		}
 	}
 	return (head) ;
@@ -459,7 +461,7 @@ void fire_save(struct Hotel *Q)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	while(L)
 	{
@@ -482,13 +484,13 @@ void check(int n)			//定义check函数，用来检查登记时房间是否已经有旅客入住
 	{
 		printf ("内存分配失败！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	if((fp=fopen("resturant.txt","rb"))==NULL)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		change();
 	}
 	while (fread (s,LEN,1,fp))    //读取当前的信息，并存到链表中
 	{
@@ -504,8 +506,8 @@ while (pa)
 	{
 		printf ("\n%d号房间已经有旅客入住了！\n",n);
 		getch();
-		exit(0);
-	}
+		change();
+		}
 	pa=pa->next ;
 }
 }
@@ -521,13 +523,13 @@ struct Hotel *load()		 //定义load函数读取当前的信息，并存到链表中
 	{
 		printf ("动态内存分配失败！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	if((fp=fopen("resturant.txt","rb"))==NULL)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		exit(0);
+		system("pause");system("cls");main();
 	}
 	head = pb;
 	while (fread (s,LEN,1,fp))    //读取当前的信息，并存到链表中
