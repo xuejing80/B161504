@@ -695,7 +695,7 @@ b[kai].gongzi.Dec=0;
 		fputs(x,fp2);
 }
 
-	ji=kai+1;printf("e");
+	ji=kai+1;
 	for(ji;ji<N;ji++)
 	{		//printf("ha");测试for循环执行次数 
 		fputs(b[ji].name,fp2);
@@ -739,6 +739,7 @@ b[kai].gongzi.Dec=0;
 
 	gotoxy(25,7);
 	printf("删除成功");
+	getch(); 
 	sleep(3000);		
 }
 
@@ -748,7 +749,7 @@ void findall(xinxi a[],int N)		//查找信息			这里只显示最后一个月(12月)的工资，如
 	int i=0; 
 	jiemian();
 	gotoxy(11,4);
-	printf("  会  员  名     性别      职       业    年龄  工资\n");
+	printf("会 员 名       性 别        职 业     年 龄   工 资\n");
 	for( ; i<N ; i++ )
 	{
 		gotoxy(11,5+i);
@@ -763,7 +764,7 @@ void findmyself(xinxi a[],int i)		//同上
 {
 	jiemian();
 	gotoxy(11,4);
-	printf("会  员  名     性别      职       业    年龄  工资\n");
+	printf("会 员 名       性 别        职 业     年 龄   工 资\n");
 	gotoxy(11,5);
 	printf("%-14s%4s%16s    %4d   %6d\n",a[i].name,a[i].sex,a[i].job,a[i].old,a[i].gongzi.Dec);
 	getch();
@@ -848,7 +849,7 @@ void tongji(xinxi a[],int n)
 		shouru=shouru+a[i].gongzi.Jan+a[i].gongzi.Feb+a[i].gongzi.Mar+a[i].gongzi.Apr+a[i].gongzi.May+a[i].gongzi.Jun+a[i].gongzi.Jul+a[i].gongzi.Aug+a[i].gongzi.Sep+a[i].gongzi.Oct+a[i].gongzi.Nov+a[i].gongzi.Dec;
 	}
 	jiemian();
-	gotoxy(11,4);
+	gotoxy(8,4);
 	printf("这一年，共有员工%d人，工资总数为%d，税收总数为%d",n,shouru,gongji);
 
 
@@ -978,7 +979,7 @@ begin:
 		i++;
 	}
 
-//	getch();
+
 
 
 
@@ -1081,7 +1082,7 @@ begin:
 	}
 
 //	Sleep(3000);
-	if(xuanze != 7) 
+	if(xuanze != 6) 
 	{
 		jiemian();
 		daoshu();
