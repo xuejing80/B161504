@@ -16,8 +16,8 @@ typedef struct Food{
 	int scorenum; // 评价条数
 }food;
 
-void save(food *food, int size);
-int Login();
+void save(food *food, int size);//将结构体数组的内容写入文件
+int Login();//登陆，登陆失败返回0
 
 int main()
 {
@@ -38,26 +38,22 @@ int main()
 	float a, b;
 	int j = 1;
 	char foname[20];
-	int q;
+	int q=0;
 	
-	q=Login();
-    while(q==0)
-	{
-		q=Login();
-	}
+    while(!q) q=Login();
+
 	system("pause");
 
 	while (true)
 	{
 		system("cls");
-		printf("请输入要使用的功能：\n1.添加/删除/修改\n2.菜品信息查询\n3.选择菜品\n4.评分系统\n");
+		printf("请输入要使用的功能：\n→1.添加/删除/修改\n→2.菜品信息查询\n→3.选择菜品\n→4.评分系统\n");
 		scanf("%d", &option);
-		// 增删改
-
+		
 		system("cls");
 		if (option == 1)
 		{
-			printf("请输入要使用的功能：\n1.添加\n2.删除\n3.修改\n0.返回\n");
+			printf("请输入要使用的功能：\n→1.添加\n→2.删除\n→3.修改\n→0.返回\n");
 			scanf("%d", &option);
 			if (option == 1)
 			{
@@ -70,10 +66,10 @@ int main()
 				getchar();
 				scanf("%[^,],%[^,],%[^,],%[^,],%f", location, shopname, foodname, photo, &price);
 				
-				fp = fopen("food.txt", "a+");
-				fprintf(fp, "%s %s %s %s %.2f 0 0\n", location, shopname, foodname, photo, price);
-				fflush(fp);
-				fclose(fp);
+				fp = fopen("food.txt", "a+");//以读写方式打开指定文件
+				fprintf(fp, "%s %s %s %s %.2f 0 0\n", location, shopname, foodname, photo, price);//发送信息到文件
+				fflush(fp);//更新文件信息
+				fclose(fp);//关闭文件
 			}
 			else if (option == 2)
 			{
@@ -87,13 +83,12 @@ int main()
 					f = (food *)realloc(f, (size + 1) * sizeof(food));
 					f[size] = ftemp;
 					size++;
-					//printf("%s %s %s %s %.2f %d %d\n", ftemp.location, ftemp.shopname, ftemp.foodname, ftemp.photo, ftemp.price, ftemp.scoresum, ftemp.scorenum);
 				}
 				fclose(fp);
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
 				for ( i = 0; i < size; i++)
-				{
-					printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+				{	
+					printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 				}
 				printf("请输入要删除的编号：\n");
 				scanf("%d", &id);
@@ -103,9 +98,11 @@ int main()
 				{
 					f[i] = f[i + 1];
 				}
-				for (i = 0; i < size; i++)
-				{
-					printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+                system("cls");
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
+				for ( i = 0; i < size; i++)
+				{	
+					printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 				}
 				save(f, size);
 			}
@@ -124,10 +121,10 @@ int main()
 					//printf("%s %s %s %s %.2f %d %d\n", ftemp.location, ftemp.shopname, ftemp.foodname, ftemp.photo, ftemp.price, ftemp.scoresum, ftemp.scorenum);
 				}
 				fclose(fp);
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
-				for (i = 0; i < size; i++)
-				{
-					printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
+				for ( i = 0; i < size; i++)
+				{	
+					printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 				}
 				printf("请输入要修改的编号：\n");
 				scanf("%d", &id);
@@ -146,7 +143,8 @@ int main()
 		}
 		else if (option == 2)
 		{
-			printf("请输入要使用的功能：\n1.根据位置查询\n2.根据价格区间查询\n3.根据菜品名称查询\n0.返回\n");
+			int size=0;
+			printf("请输入要使用的功能：\n→1.根据位置查询\n→2.根据价格区间查询\n→3.根据菜品名称查询\n→0.返回\n");
 			scanf("%d", &option);
 			
 
@@ -164,13 +162,12 @@ int main()
 				printf("请输入位置信息：\n");
 				
 				scanf("%s", loc);
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
-			j=1;
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
 				for ( i = 0; i < size; i++)
 				{
 					if (strcmp(loc, f[i].location) == 0)
 					{
-						printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (j++), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+						printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 					}
 				}
 			}
@@ -179,13 +176,12 @@ int main()
 				printf("请输入价格区间a-b：\n");
 				
 				scanf("%f-%f", &a, &b);
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
-			j = 1;
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
 				for (i = 0; i < size; i++)
 				{
 					if (f[i].price >= a && f[i].price <= b)
 					{
-						printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (j++), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+						printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 					}
 				}
 			}
@@ -194,13 +190,12 @@ int main()
 				printf("请输入菜品名称：\n");
 			
 				scanf("%s", foname);
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
-				j = 1;
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
 				for (i = 0; i < size; i++)
 				{
 					if (strcmp(foname, f[i].foodname) == 0)
 					{
-						printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (j++), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+						printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 					}
 				}
 			}
@@ -220,10 +215,10 @@ int main()
 				//printf("%s %s %s %s %.2f %d %d\n", ftemp.location, ftemp.shopname, ftemp.foodname, ftemp.photo, ftemp.price, ftemp.scoresum, ftemp.scorenum);
 			}
 			fclose(fp);
-			printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\n");
+			printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    价格\n");
 			for (i = 0; i < size; i++)
 			{
-				printf("%d\t%s\t%s\t%s\t%s\t%.2f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
+				printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price);
 			}
 			printf("请输入要选择的编号，输入0结束：\n");
 			
@@ -248,7 +243,7 @@ int main()
 				//printf("%s %s %s %s %.2f %d %d\n", ftemp.location, ftemp.shopname, ftemp.foodname, ftemp.photo, ftemp.price, ftemp.scoresum, ftemp.scorenum);
 			}
 			fclose(fp);
-			printf("请输入要使用的功能：\n1.评分\n2.查询评分\n0.返回\n");
+			printf("请输入要使用的功能：\n→1.评分\n→2.查询评分\n→0.返回\n");
 			scanf("%d", &option);
 			if (option == 1)
 			{
@@ -262,10 +257,10 @@ int main()
 			}
 			else if (option == 2)
 			{
-				printf("编号\t地理位置\t店家名称\t食物名称\t照片\t价格\t评分\n");
+				printf("编号  地理位置\t\t\t店家名称\t食物名称    照片\t    评分\n");
 				for (i = 0; i < size; i++)
 				{
-					printf("%d\t%s\t%s\t%s\t%s\t%.2f\t%.2f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, f[i].price, ((float)f[i].scoresum / (float)f[i].scorenum));
+					printf("%-6d%-26.24s%-16.14s%-12.10s%-16.16s%.1f\n", (i + 1), f[i].location, f[i].shopname, f[i].foodname, f[i].photo, ((float)f[i].scoresum / (float)f[i].scorenum));
 				}
 			}
 		}
@@ -287,7 +282,6 @@ void save(food *food, int size)
 	fclose(fp);
 }
 
-//登陆，登陆失败返回0
 int Login()
 {
 	char user[20], userFile[20];
