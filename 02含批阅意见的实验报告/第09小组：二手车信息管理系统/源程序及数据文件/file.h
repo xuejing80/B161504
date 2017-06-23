@@ -1,7 +1,7 @@
  /*③ file.h文件的内容如下：*/
 #include <stdio.h>
 #include <stdlib.h>
-#include "student.h"        
+#include "car.h"        
 int  createFile(CAR c[ ])              /*建立初始的数据文件*/
 {
 	FILE *fp;
@@ -18,13 +18,13 @@ fwrite(c,sizeC,n,fp);                  /*将刚才读入的所有记录一次性写入文件*/
 	 return n;
 }
 
-int readFile(CAR c[ ] )                     /*将文件中的内容读出置于结构体数组c中*/
+int readFile(CAR c[ ] )                     /*将文件中的内容读出置于结构体数组stu中*/
 {
    	FILE *fp;
 	int i=0;
 	if((fp=fopen("d:\\student.dat", "rb")) == NULL)  /*以读的方式打开指定文件*/
 	{
-	    printf("文件不存在，请先创建一个新的文件:\n");  /*如果打开失败输出提示信息*/
+	    printf("文件不存在，请先创建一个新文件:\n");  /*如果打开失败输出提示信息*/
 	    return 0;                              /*然后返回0*/
 	}	 
     	fread(&c[i],sizeC,1,fp);                   /*读出第一条记录*/
@@ -42,7 +42,7 @@ void saveFile(CAR c[],int n)                  /*将结构体数组的内容写入文件*/
   	FILE *fp;	
    	if((fp=fopen("d:\\student.dat", "wb")) == NULL) /*以写的方式打开指定文件*/
 	{
-		printf("文件无法打开!\n");           /*如果打开失败，输出提示信息*/
+		printf("无法打开文件!\n");           /*如果打开失败，输出提示信息*/
 		exit(0);                            /*然后退出*/
 	}
 	fwrite(c,sizeC,n,fp);        
