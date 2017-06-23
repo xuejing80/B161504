@@ -4,26 +4,27 @@
 #include"file.h"
 #include"student.h"
 
-void printHead( )      /*´òÓ¡Ñ§ÉúÐÅÏ¢µÄ±íÍ·*/
+void printHead( )      /*´òÓ¡Æû³µÐÅÏ¢µÄ±íÍ·*/
 {
-printf("%8s%10s%8s%6s%6s\n","±àºÅ","³µÐÍ","Ô­¼Û","ÏÖ¼Û","²î¼Û");
+printf("%7s%10s%13s%7s%7s%7s\n","±àºÅ","³µÐÍ","Ô­¼Û","ÏÖ¼Û","²î¼Û","Ãû´Î");
 }
 
 void menu( )         /*¶¥²ã²Ëµ¥º¯Êý*/
-{       printf("********  Æû³µ±àºÅ¶ÔÓ¦ ********\n");
-        printf("********              0.±¼³Û ********\n");
-        printf("********              1.±¦Âí********\n");
-		printf("********              2.½Ý´ï********\n");
-		printf("******** 0.ÄÏ¾©       3.°ÂµÏ ********\n");
-		printf("******** 1.ÉÏº£       4.Â·»¢  ********\n");
+{       printf("********      Æû³µ±àºÅ¶ÔÓ¦      ********\n");
+        printf("********              0.±¼³Û    ********\n");
+        printf("********              1.±¦Âí    ********\n");
+		printf("********              2.½Ý´ï    ********\n");
+		printf("******** 0.ÄÏ¾©       3.°ÂµÏ    ********\n");
+		printf("******** 1.ÉÏº£       4.Â·»¢    ********\n");
 		printf("******** 2.±±¾©       5.ÎåÁâºê¹â********\n");
-		printf("******** 3.¹ãÖÝ       6.½Ý±ª ********\n");
-		printf("******** 4.ÉîÛÚ       7.É£ËþÄÉ ********\n");
-		printf("********              8.¾ýÔ½********\n");
-		printf("********              9.Âí×Ô´ï********\n");
+		printf("******** 3.¹ãÖÝ       6.½Ý±ª    ********\n");
+		printf("******** 4.ÉîÛÚ       7.É£ËþÄÉ  ********\n");
+		printf("********              8.¾ýÔ½    ********\n");
+		printf("********              9.Âí×Ô´ï  ********\n");
 		printf("******** 1. ÏÔÊ¾»ù±¾ÐÅÏ¢ ********\n");
 		printf("******** 2. »ù±¾ÐÅÏ¢¹ÜÀí ********\n");
         printf("******** 3. ¸ù¾ÝÌõ¼þ²éÑ¯ ********\n");
+        printf("******** 4. ¸ù¾Ý²î¼ÛÅÅÐò ********\n");
 		printf("******** 0. ÍË³ö         ********\n");
 }
 
@@ -38,7 +39,7 @@ void menuBase( )     /*2¡¢»ù±¾ÐÅÏ¢¹ÜÀí²Ëµ¥º¯Êý*/
 
  
 
-void menuSearch()    /*5¡¢¸ù¾ÝÌõ¼þ²éÑ¯²Ëµ¥º¯Êý*/
+void menuSearch()    /*3¡¢¸ù¾ÝÌõ¼þ²éÑ¯²Ëµ¥º¯Êý*/
 {
 		printf("######## 1. °´±àºÅ²éÑ¯   ########\n");
 		printf("######## 2. °´³µÐÍ²éÑ¯   ########\n");
@@ -46,34 +47,34 @@ void menuSearch()    /*5¡¢¸ù¾ÝÌõ¼þ²éÑ¯²Ëµ¥º¯Êý*/
 }
 
 int baseManage(CAR c[],int n)    	     /*¸Ãº¯ÊýÍê³É»ù±¾ÐÅÏ¢¹ÜÀí*/
-/*°´Ñ§ºÅ½øÐÐ²åÈëÉ¾³ýÐÞ¸Ä£¬Ñ§ºÅ²»ÄÜÖØ¸´*/
+/*°´±àºÅ½øÐÐ²åÈëÉ¾³ýÐÞ¸Ä£¬±àºÅ²»ÄÜÖØ¸´*/
 {  
 		int choice,t,find[NUM];
      CAR ca;
 do
 	    {   
 menuBase( );                  /*ÏÔÊ¾¶ÔÓ¦µÄ¶þ¼¶²Ëµ¥*/
-printf("choose one operation you want to do:\n");
+printf("ÇëÑ¡ÔñÒ»¸öÑ¡Ïî:\n");
 		     scanf("%d",&choice);	          /*¶ÁÈëÑ¡Ïî*/
 		     switch(choice)
 		     {
-			   case 1:	 readC(&ca,1);       /*¶ÁÈëÒ»Ìõ´ý²åÈëµÄÑ§Éú¼ÇÂ¼*/
-					 n=insertC(c,n,ca);   /*µ÷ÓÃº¯Êý²åÈëÑ§Éú¼ÇÂ¼*/
+			   case 1:	 readC(&ca,1);       /*¶ÁÈëÒ»Ìõ´ý²åÈëµÄÆû³µ¼ÇÂ¼*/
+					 n=insertC(c,n,ca);   /*µ÷ÓÃº¯Êý²åÈëÆû³µ¼ÇÂ¼*/
 					 break;
-			   case 2:  printf("Input the number deleted\n");
-					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÉ¾³ýµÄÑ§ÉúÑ§ºÅ*/
-					 n=deleteC(c,n,ca);   /*µ÷ÓÃº¯ÊýÉ¾³ýÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
+			   case 2:  printf("ÇëÊäÈëÒªÉ¾³ýµÄ±àºÅ\n");
+					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÉ¾³ýµÄÆû³µ±àºÅ*/
+					 n=deleteC(c,n,ca);   /*µ÷ÓÃº¯ÊýÉ¾³ýÖ¸¶¨±àºÅµÄÆû³µ¼ÇÂ¼*/
 					 break;
-			   case 3:  printf("Input the number modified\n");
-					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÐÞ¸ÄµÄÑ§ÉúÑ§ºÅ*/
-				      t=searchC(c,n,ca,1,find) ; /*µ÷ÓÃº¯Êý²éÕÒÖ¸¶¨Ñ§ºÅµÄÑ§Éú¼ÇÂ¼*/
-				      if (t)                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼´æÔÚ*/
+			   case 3:  printf("ÇëÊäÈëÒªÐÞ¸ÄµÄ±àºÅ\n");
+					 scanf("%ld",&ca.num);  /*¶ÁÈëÒ»¸ö´ýÐÞ¸ÄµÄÆû³µ±àºÅ*/
+				      t=searchC(c,n,ca,1,find) ; /*µ÷ÓÃº¯Êý²éÕÒÖ¸¶¨±àºÅµÄÆû³µ¼ÇÂ¼*/
+				      if (t)                 /*Èç¹û¸Ã±àºÅµÄ¼ÇÂ¼´æÔÚ*/
 					 {
-						  readC(&ca,1);   /*¶ÁÈëÒ»ÌõÍêÕûµÄÑ§Éú¼ÇÂ¼ÐÅÏ¢*/
+						  readC(&ca,1);   /*¶ÁÈëÒ»ÌõÍêÕûµÄÆû³µ¼ÇÂ¼ÐÅÏ¢*/
 					      c[find[0]]=ca;    /*½«¸Õ¶ÁÈëµÄ¼ÇÂ¼¸³Öµ¸øÐèÒªÐÞ¸ÄµÄÊý×é¼ÇÂ¼*/ 					 
 					  }					 
-					 else                 /*Èç¹û¸ÃÑ§ºÅµÄ¼ÇÂ¼²»´æÔÚ*/ 
- printf("this car is not in,can not be modified.\n"); /*Êä³öÌáÊ¾ÐÅÏ¢*/
+					 else                 /*Èç¹û¸Ã±àºÅµÄ¼ÇÂ¼²»´æÔÚ*/ 
+ printf("ÕâÁ¾³µ²»´æÔÚ£¬ÎÞ·¨ÐÞ¸Ä.\n"); /*Êä³öÌáÊ¾ÐÅÏ¢*/
 					 break;
 			    case 0: break;
 		    }
@@ -90,15 +91,15 @@ CAR ca;
 	   do
 {
 			menuSearch( );                         /*ÏÔÊ¾¶ÔÓ¦µÄ¶þ¼¶²Ëµ¥*/
-			printf("choose one operation you want to do:\n");
+			printf("Ñ¡ÔñÒ»¸öÑ¡Ïî:\n");
 			scanf("%d",&choice);
 			switch(choice)
 			{
-				case 1:   printf("Input a CAR\'s num will be searched:\n");
-				      scanf("%ld",&ca.num);         /*ÊäÈë´ý²éÑ¯Ñ§ÉúµÄÑ§ºÅ*/
+				case 1:   printf("ÇëÊäÈëÒª²éÑ¯µÄÆû³µ±àºÅ:\n");
+				      scanf("%ld",&ca.num);         /*ÊäÈë´ý²éÑ¯Æû³µµÄ±àºÅ*/
 					  break;
-				case 2:   printf("Input a CAR\'s name will be searched:\n");
-				      scanf("%s",ca.name);	          /*ÊäÈë´ý²éÑ¯Ñ§ÉúµÄÐÕÃû*/		  
+				case 2:   printf("ÇëÊäÈëÒª²éÑ¯µÄÆû³µÐÍºÅ:\n");
+				      scanf("%s",ca.name);	          /*ÊäÈë´ý²éÑ¯Æû³µµÄÐÍºÅ*/		  
 				      break;   
 				
 				case 0:   break;
@@ -113,7 +114,7 @@ CAR ca;
 	      	 printC(&c[f[i]],1);      /*Ã¿´ÎÊä³öÒ»Ìõ¼ÇÂ¼*/
 				}
 		    		else
-			    	    printf("this record does not exist!\n"); /*Èç¹û²éÕÒ²»µ½ÔªËØ£¬ÔòÊä³öÌáÊ¾ÐÅÏ¢*/
+			    	    printf("ÕâÌõ¼ÇÂ¼²»´æÔÚ!\n"); /*Èç¹û²éÕÒ²»µ½ÔªËØ£¬ÔòÊä³öÌáÊ¾ÐÅÏ¢*/
 		     }		
 	    }while (choice);
 }
@@ -123,14 +124,17 @@ int runMain(CAR c[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦ÄÜÑ¡Ô
 		switch(choice)
 		{
 			case 1: printHead( );           /* 1. ÏÔÊ¾»ù±¾ÐÅÏ¢*/
-				 sortC(c,n,1);         /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÅÅÐò¼ÇÂ¼*/ 
-          	 printC(c,n);          /*°´Ñ§ºÅÓÉÐ¡µ½´óµÄË³ÐòÊä³öËùÓÐ¼ÇÂ¼*/
+				 sortC(c,n,1);          /*°´±àºÅÓÉÐ¡µ½´óµÄË³ÐòÅÅÐò¼ÇÂ¼*/ 
+          	 printC(c,n);         /*°´±àºÅÓÉÐ¡µ½´óµÄË³ÐòÊä³öËùÓÐ¼ÇÂ¼*/
 					break;
 			case 2: n=baseManage(c,n);    /* 2. »ù±¾ÐÅÏ¢¹ÜÀí*/
 			   	     break;
 		
-			case 3: searchManage(c,n);     /* 5. ¸ù¾ÝÌõ¼þ²éÑ¯*/
+			case 3: searchManage(c,n);     /* 3. ¸ù¾ÝÌõ¼þ²éÑ¯*/
 				     break;
+			case 4: calcuRank(c,n);        /* 4. ¸ù¾Ý²î¼ÛÅÅÐò*/
+				    printrank(c,n);
+					break;
           case 0: break;
 		}
 		return n;
@@ -138,7 +142,7 @@ int runMain(CAR c[],int n,int choice)    /*Ö÷¿ØÄ£¿é£¬¶ÔÓ¦ÓÚÒ»¼¶²Ëµ¥ÆäÏÂ¸÷¹¦ÄÜÑ¡Ô
 
 int main( )
 {
-		CAR c[NUM];                /*¶¨ÒåÊµ²ÎÒ»Î¬Êý×é´æ´¢Ñ§Éú¼ÇÂ¼*/
+		CAR c[NUM];                /*¶¨ÒåÊµ²ÎÒ»Î¬Êý×é´æ´¢Æû³µ¼ÇÂ¼*/
       int choice,n;
 	 n=readFile(c);                  /*Ê×ÏÈ¶ÁÈ¡ÎÄ¼þ£¬¼ÇÂ¼ÌõÊý·µ»Ø¸³Öµ¸øn*/
 	 if (!n)                          /*Èç¹ûÔ­À´µÄÎÄ¼þÎª¿Õ*/
@@ -148,14 +152,14 @@ int main( )
 	do
 	     {
 	         menu();                      /*ÏÔÊ¾Ö÷²Ëµ¥*/
-	         printf("Please input your choice: ");
+	         printf("ÇëÊäÈëÄúµÄÑ¡Ôñ: ");
 	         scanf("%d",&choice);
 	         if (choice>=0&&choice<=5)
 	              n=runMain(c,n,choice);    /*Í¨¹ýµ÷ÓÃ´Ëº¯Êý½øÐÐÒ»¼¶¹¦ÄÜÏîµÄÑ¡ÔñÖ´ÐÐ*/
 	         else 
-		          printf("error input,please input your choice again!\n");
+		          printf("ÊäÈë´íÎó£¬ÇëÄúÖØÐÂÊäÈë!\n");
 	} while (choice);
-	sortC(c,n,1);                   /*´æÈëÎÄ¼þÇ°°´Ñ§ºÅÓÉÐ¡µ½´óÅÅÐò*/ 
+	sortC(c,n,1);                   /*´æÈëÎÄ¼þÇ°°´±àºÅÓÉÐ¡µ½´óÅÅÐò*/ 
 	     saveFile(c,n);                   /*½«½á¹û´æÈëÎÄ¼þ*/
       return 0;
 }

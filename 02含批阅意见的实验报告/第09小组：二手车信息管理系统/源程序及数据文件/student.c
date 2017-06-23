@@ -2,20 +2,20 @@
 #include "student.h"
 #include <stdio.h>
 
-int readC(CAR  *c , int n)          /*¶ÁÈëÑ§Éú¼ÇÂ¼Öµ£¬Ñ§ºÅÎª0»ò¶ÁÂú¹æ¶¨ÌõÊı¼ÇÂ¼Ê±Í£Ö¹*/
+int readC(CAR  *c , int n)          /*¶ÁÈëÆû³µ¼ÇÂ¼Öµ£¬¶ÁÂú¹æ¶¨ÌõÊı¼ÇÂ¼Ê±Í£Ö¹*/
 {
 	int i;
 	for (i=0;i<n;i++)
 	{    
-		printf("Input one car information\n");
-		printf("num:  ");
+		printf("ÇëÊäÈëÒ»Á¾³µµÄĞÅÏ¢\n");
+		printf("Æû³µ±àºÅ:  ");
 	        scanf("%ld", &c[i].num);
 	
-		printf("name: ");
+		printf("Æû³µĞÍºÅ: ");
 		scanf("%s",c[i].name);	
-		printf("original price");
+		printf("Ô­¼Û£º");
                 scanf("%ld",&c[i].p1);
-                printf("present price");
+                printf("ÏÖ¼Û£º");
                 scanf("%ld",&c[i].p2);
     	        c[i].p3=c[i].p1-c[i].p2;                
 		
@@ -24,40 +24,42 @@ int readC(CAR  *c , int n)          /*¶ÁÈëÑ§Éú¼ÇÂ¼Öµ£¬Ñ§ºÅÎª0»ò¶ÁÂú¹æ¶¨ÌõÊı¼ÇÂ¼Ê
 	return i;                         /*·µ»ØÊµ¼Ê¶ÁÈëµÄ¼ÇÂ¼ÌõÊı*/
 }
 
-void printC ( CAR  *c , int n)       /*Êä³öËùÓĞÑ§Éú¼ÇÂ¼µÄÖµ*/
+void printC ( CAR  *c , int n)       /*Êä³öËùÓĞÆû³µ¼ÇÂ¼µÄÖµ*/
 {	
     int i;
 	for (i=0;i<n;i++)
 	{
 		printf("%8ld  ", c[i].num);
-		printf("%8s", c[i].name);
-		printf("%7d", c[i].p1);
-	        printf("%7d",c[i].p2);
-	    printf("%7d",c[i].p3);
+		printf("%15s", c[i].name);
+		printf("%13d", c[i].p1);
+	        printf("%13d",c[i].p2);
+	    printf("%13d\n",c[i].p3);
 	    
 	}
 }
 
-int equal(CAR c1,CAR c2,int condition)  /*ÈçºÎÅĞ¶ÏÁ½¸öStudent¼ÇÂ¼ÏàµÈ*/
+int equal(CAR c1,CAR c2,int condition)  /*ÈçºÎÅĞ¶ÏÁ½¸öCAR¼ÇÂ¼ÏàµÈ*/
 {
-	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½ÏÑ§ºÅ*/
+	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½Ï±àºÅ*/
 		return c1.num==c2.num;
-	else if (condition==2)                /*Èç¹û²ÎÊıconditionµÄÖµÎª2£¬Ôò±È½ÏĞÕÃû*/
+	else if (condition==2)                /*Èç¹û²ÎÊıconditionµÄÖµÎª2£¬Ôò±È½ÏĞÍºÅ*/
      {
 	     if (strcmp(c1.name,c2.name)==0) 	return 1;
 		else return 0;
      }
 
- else if (condition==3)                /*Èç¹û²ÎÊıconditionµÄÖµÎª4£¬Ôò±È½Ï×Ü·Ö*/
+ else if (condition==3)                /*Èç¹û²ÎÊıconditionµÄÖµÎª3£¬Ôò±È½Ï²î¼Û*/
 		return c1.p3==c2.p3;
+ else if (condition==4)
+	    return c1.rank==c2.rank;
 	else return 1;                       /*ÆäÓàÇé¿ö·µ»Ø1*/
 } 
 
-int larger(CAR c1,CAR c2,int condition)  /*¸ù¾İconditionÌõ¼ş±È½ÏÁ½¸öStudent¼ÇÂ¼µÄ´óĞ¡*/
+int larger(CAR c1,CAR c2,int condition)  /*¸ù¾İconditionÌõ¼ş±È½ÏÁ½¸öCAR¼ÇÂ¼µÄ´óĞ¡*/
 {
-	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½ÏÑ§ºÅ*/
+	if (condition==1)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª1£¬Ôò±È½Ï±àºÅ*/
 		return c1.num>c2.num;
-	if (condition==2)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª2£¬Ôò±È½Ï×Ü·Ö*/
+	if (condition==2)                    /*Èç¹û²ÎÊıconditionµÄÖµÎª2£¬Ôò±È½Ï²î¼Û*/
 		return c1.p3>c2.p3;	
 	else return 1; /*ÆäÓàÇé¿ö·µ»Ø1*/
 }
@@ -74,6 +76,36 @@ void reverse(CAR c[],int n)             /*Êı×éÔªËØÄæÖÃ*/
 	}
 }
 
+void calcuRank(CAR c[],int n)            /*¸ù¾İ²î¼Û¼ÆËãËùÒÔÆû³µµÄÅÅÃû£¬²î¼ÛÏàÍ¬ÕâÃû´ÎÏàÍ¬*/
+{int i;
+sortC(c,n,2);                            /*ÏÈµ÷ÓÃsortCËã·¨£¬°´²î¼ÛÓÉĞ¡µ½´óÅÅĞò*/
+reverse(c,n);                            /*ÔÙÄæÖÃ£¬Ôò°´²î¼ÛÓÉ´óµ½Ğ¡ÅÅĞò*/
+c[0].rank=1;                             /*µÚ1Ìõ¼ÇÂ¼µÄÃû´ÎÒ»¶¨ÊÇ1*/
+for(i=1;i<n;i++)                         /*´ÓµÚ2Ìõ¼ÇÂ¼Ò»Ö±µ½×îºóÒ»Ìõ½øĞĞÑ­»·*/
+{
+if (equal(c[i],c[i-1],3))                /*Èç¹ûµ±Ç°¼ÇÂ¼ÓëÆäÏàÁÚµÄÇ°Ò»Ìõ¼ÇÂ¼×Ü·ÖÏàµÈ*/
+	c[i].rank=c[i-1].rank;               /*Ôòµ±Ç°¼ÇÂ¼Ãû´ÎµÈÓÚÆäÏàÁÚµÄÇ°Ò»Ìõ¼ÇÂ¼Ãû´Î*/
+else
+c[i].rank=i+1;}                          /*Èç²»ÏàµÈÊ±£¬Ôòµ±Ç°¼ÇÂ¼Ãû´ÎµÈÓÚÆäÏÂ±êºÅ+1*/
+}
+
+
+
+void printrank(CAR c[],int n)             /*Êä³ö²î¼ÛÅÅĞòºóËùÒÔÆû³µ¼ÇÂ¼µÄÖµ*/
+{  int i;
+	sortC(c,50,4);
+
+for (i=0;i<n;i++)
+	{
+		printf("%8ld  ", c[i].num);
+		printf("%15s", c[i].name);
+		printf("%13d", c[i].p1);
+	        printf("%13d",c[i].p2);
+	    printf("%13d\n",c[i].p3);
+	    
+	}
+sortC(c,50,1);
+}
 
 
 
@@ -98,7 +130,7 @@ void sortC(CAR c[],int n,int condition)  /*Ñ¡Ôñ·¨ÅÅĞò£¬°´conditionÌõ¼şÓÉĞ¡µ½´óÅÅ
 	}
 }
 
-int searchC(CAR c[],int n,CAR ca,int condition,int f[ ])  /*ÔÚstuÊı×éÖĞÒÀconditionÌõ¼ş²éÕÒ*/
+int searchC(CAR c[],int n,CAR ca,int condition,int f[ ])  /*ÔÚcÊı×éÖĞÒÀconditionÌõ¼ş²éÕÒ*/
 /*ÓësÏàÍ¬µÄÔªËØ£¬ÓÉÓÚ²»Ö¹Ò»Ìõ¼ÇÂ¼·ûºÏÌõ¼ş£¬Òò´Ë½«ÕâĞ©ÔªËØµÄÏÂ±êÖÃÓÚ fÊı×éÖĞ*/
 {
 	int i,j=0,find=0;
@@ -111,30 +143,30 @@ int searchC(CAR c[],int n,CAR ca,int condition,int f[ ])  /*ÔÚstuÊı×éÖĞÒÀconditi
 	 return find;                                /*·µ»Øfind£¬ÆäÖµÎª0Ôò±íÊ¾Ã»ÕÒµ½*/ 
 }
 
-int insertC(CAR c[],int n,CAR ca)              /*ÏòstuÊı×éÖĞÒÀÑ§ºÅµİÔö²åÈëÒ»¸öÔªËØs*/
+int insertC(CAR c[],int n,CAR ca)              /*ÏòstuÊı×éÖĞÒÀ±àºÅµİÔö²åÈëÒ»¸öÔªËØs*/
 {
 	int i;
-	sortC(c,n,1);                              /*ÏÈ°´Ñ§ºÅÅÅĞò*/
+	sortC(c,n,1);                              /*ÏÈ°´±àºÅÅÅĞò*/
 	for (i=0;i<n;i++)
 	{
-		if (equal(c[i],ca,1))                      /*Ñ§ºÅÏàÍ¬²»ÔÊĞí²åÈë£¬±£Ö¤Ñ§ºÅµÄÎ¨Ò»ĞÔ*/
+		if (equal(c[i],ca,1))                      /*±àºÅÏàÍ¬²»ÔÊĞí²åÈë£¬±£Ö¤±àºÅµÄÎ¨Ò»ĞÔ*/
 		{
-		    printf("this record exist,can not insert again!\n");
+		    printf("ÕâÌõ¼ÇÂ¼ÒÑ´æÔÚ£¬ÎŞ·¨ÔÙ´Î²åÈë!\n");
 		    return n;
 		}
 	}
-	for (i=n-1;i>=0;i--)                          /*°´Ñ§ºÅ´ÓĞ¡µ½´óÓĞĞò*/
+	for (i=n-1;i>=0;i--)                          /*°´±àºÅ´ÓĞ¡µ½´óÓĞĞò*/
 	{
-		if (!larger(c[i],ca,1))                    /*Èç¹ûs´óÓÚµ±Ç°ÔªËØstu[i]£¬ÔòÍË³öÑ­»·*/
+		if (!larger(c[i],ca,1))                    /*Èç¹ûs´óÓÚµ±Ç°ÔªËØc[i]£¬ÔòÍË³öÑ­»·*/
 		break;
-		c[i+1]=c[i];                         /*·ñÔòÔªËØstu[i]ºóÒÆÒ»¸öÎ»ÖÃ*/
+		c[i+1]=c[i];                         /*·ñÔòÔªËØc[i]ºóÒÆÒ»¸öÎ»ÖÃ*/
 	}
 	c[i+1]=ca;                                /*ÔÚÏÂ±êi+1´¦²åÈëÔªËØs*/                                   
 	n++;                                     /*ÔªËØ¸öÊıÔö¼Ó1*/
 	return n;                                  /*·µ»ØÏÖÓĞÔªËØ¸öÊı*/
 }
 
-int deleteC(CAR c[],int n,CAR ca)            /*´ÓÊı×éÖĞÉ¾³ıÖ¸¶¨Ñ§ºÅµÄÒ»¸öÔªËØ*/
+int deleteC(CAR c[],int n,CAR ca)            /*´ÓÊı×éÖĞÉ¾³ıÖ¸¶¨±àºÅµÄÒ»¸öÔªËØ*/
 {
 	int i,j;
 	for (i=0;i<n;i++)                           /*Ñ°ÕÒ´ıÉ¾³ıµÄÔªËØ*/
@@ -144,7 +176,7 @@ int deleteC(CAR c[],int n,CAR ca)            /*´ÓÊı×éÖĞÉ¾³ıÖ¸¶¨Ñ§ºÅµÄÒ»¸öÔªËØ*/
 		printf("This record does not exist!\n");    /*¸ø³öÌáÊ¾ĞÅÏ¢È»ºó·µ»Ø*/
 		return n;
 	}
-	for (j=i; j<n-1; j++)                        /*´Ë´¦Òşº¬Ìõ¼şÎªi<nÇÒequal(stu[i],s,1)³ÉÁ¢*/ 
+	for (j=i; j<n-1; j++)                        /*´Ë´¦Òşº¬Ìõ¼şÎªi<nÇÒequal(c[i],s,1)³ÉÁ¢*/ 
 		c[j]=c[j+1];                       /*Í¨¹ıÒÆ¶¯¸²¸ÇÉ¾³ıÏÂ±êÎªiµÄÔªËØ*/
                                                                             
 	n--;                                      /*ÔªËØ¸öÊı¼õÉÙ¼Ó1*/
