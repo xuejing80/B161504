@@ -38,7 +38,7 @@ char menu_select ()						//定义menu_select函数，用来完成菜单功能
 {
 	char select ;
 	printf ("\n\n--------------------------欢迎使用旅店信息管理系统---------------------------\n\n");
-	printf ("1.创建旅店信息\n2.查看旅店信息\n3.查看某一房间信息\n4.查看旅客信息\n");
+	printf ("1.创建旅店信息\n2.查看旅店信息\n3.查看某一房间信息\n4.查看所有旅客信息\n");
 	printf ("5.查找某一旅客信息\n6.旅客入住\n7.旅客换房\n8.旅客退房\n9.退出管理系统\n");
 	printf ("\n-----------------------------------------------------------------------------\n");
 	select=getch();
@@ -52,12 +52,12 @@ void in_information()					//定义in_information函数，完成创建旅店信息功能
 	printf ("\n确定创建新的旅店信息吗?该操作将清除现有的旅店信息！(y/n):");
 	scanf  ("%s",choice);
 	if((strcmp(choice,"Y")!=0)&&(strcmp(choice,"y")!=0))
-		return;
+		return ;
 	if ((fp=fopen("information.txt","wb"))==NULL)
 	{
 		printf ("无法打开文件！\n");
 		getch();
-		system("pause");system("cls");main();
+		system("pause");system("cls");main();     //pause 是暂停，在命令行上输出一行类似于“Press any key to exit”的字，等待用户按一个键，然后返回。cls为调用清屏函数，即清除屏幕所有文件 
 	}
 	printf("\n请创建新的旅店信息(以#结束)：\n");		//提示输入旅店信息
 	ch=getchar();
@@ -232,17 +232,17 @@ void show_all()						//定义是show_all函数，用来显示所有旅客信息
 	printf ("roomnumber:	");
 	printf ("name：		");
 	printf ("sex：		");
-	printf ("ID:		");
-	printf ("paid：		");
+	printf ("ID:		     ");
+	printf ("paid：	      ");
 	printf ("date：		\n");
 	while (pa)										//显示所有的旅客信息
 	{		
 		printf ("%d		",pa->room_number);		
 		printf ("%s		",pa->name);		
 		printf ("%s		",pa->sex);		
-		printf ("%s		",pa->ID);		
-		printf ("%s		",pa->paid);
-		printf ("%d %d %d",pa->inyear,pa->inmonth,pa->inday);
+		printf ("%s    ",pa->ID);		
+		printf ("%3s         ",pa->paid);
+		printf ("%8d %d %d",pa->inyear,pa->inmonth,pa->inday);
 		printf ("\n");
 		pa = pa->next;
 	}
